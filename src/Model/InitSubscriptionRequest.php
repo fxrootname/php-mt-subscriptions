@@ -59,6 +59,11 @@ class InitSubscriptionRequest extends ModelAbstract
     protected $_layoutId;
 
     /**
+     * @var string
+     */
+    protected $_productName;
+
+    /**
      * @return string
      */
     public function getPartnerName()
@@ -212,6 +217,23 @@ class InitSubscriptionRequest extends ModelAbstract
         $this->_layoutId = $layoutId;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getProductName()
+    {
+        return $this->_productName;
+    }
+
+    /**
+     * @param string $productName
+     */
+    public function setProductName($productName)
+    {
+        $this->_productName = $productName;
+    }
+
     /**
      * Return Dom Map for parser
      *
@@ -229,7 +251,8 @@ class InitSubscriptionRequest extends ModelAbstract
                 'tryAvailable' => 'tryAvailable',
                 'msisdn'       => 'msisdn',
                 'extClientId'  => 'extClientId',
-                'layoutId'     => 'layoutId'
+                'layoutId'     => 'layoutId',
+                'productName'  => 'productName'
             ]
         ];
 
