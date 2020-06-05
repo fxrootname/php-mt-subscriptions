@@ -12,7 +12,6 @@ namespace DigitalVirgo\MTSubscriptions\Model;
  */
 class InitSubscriptionRequest extends ModelAbstract
 {
-
     /**
      * @var string
      */
@@ -62,6 +61,11 @@ class InitSubscriptionRequest extends ModelAbstract
      * @var string
      */
     protected $_productName;
+
+    /**
+     * @var string
+     */
+    protected $_refererDomain;
 
     /**
      * @return string
@@ -217,7 +221,6 @@ class InitSubscriptionRequest extends ModelAbstract
         $this->_layoutId = $layoutId;
     }
 
-
     /**
      * @return string
      */
@@ -235,6 +238,22 @@ class InitSubscriptionRequest extends ModelAbstract
     }
 
     /**
+     * @return string
+     */
+    public function getRefererDomain()
+    {
+        return $this->_refererDomain;
+    }
+
+    /**
+     * @param string $refererDomain
+     */
+    public function setRefererDomain($refererDomain)
+    {
+        $this->_refererDomain = $refererDomain;
+    }
+
+    /**
      * Return Dom Map for parser
      *
      * @return array
@@ -243,16 +262,17 @@ class InitSubscriptionRequest extends ModelAbstract
     {
         return [
             'initSubscriptionRequest' => [
-                'partnerName'  => 'partnerName',
-                'serviceName'  => 'serviceName',
-                'successUrl'   => 'successUrl',
-                'failureUrl'   => 'failureUrl',
-                'clientIp'     => 'clientIp',
-                'tryAvailable' => 'tryAvailable',
-                'msisdn'       => 'msisdn',
-                'extClientId'  => 'extClientId',
-                'layoutId'     => 'layoutId',
-                'productName'  => 'productName'
+                'partnerName'    => 'partnerName',
+                'serviceName'    => 'serviceName',
+                'successUrl'     => 'successUrl',
+                'failureUrl'     => 'failureUrl',
+                'clientIp'       => 'clientIp',
+                'tryAvailable'   => 'tryAvailable',
+                'msisdn'         => 'msisdn',
+                'extClientId'    => 'extClientId',
+                'layoutId'       => 'layoutId',
+                'productName'    => 'productName',
+                'refererDomain'  => 'refererDomain'
             ]
         ];
 
