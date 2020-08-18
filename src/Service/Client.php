@@ -46,7 +46,7 @@ class Client extends GuzzleClient
     {
         if (null === static::$_instance) {
             static::$_instance = new static(array(
-                'base_url' => $apiUrl ?: self::API_URL,
+                'base_uri' => $apiUrl ?: self::API_URL,
             ));
         }
         return static::$_instance;
