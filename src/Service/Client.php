@@ -36,6 +36,13 @@ class Client extends GuzzleClient
      * @var Client
      */
     private static $_instance = null;
+    
+    /**
+     * Auth credentials for request
+     * 
+     * @var []
+     */
+    private $auth = [];
 
     /**
      * Get new instance of client
@@ -60,9 +67,7 @@ class Client extends GuzzleClient
      */
     public function setAuth($login, $password)
     {
-        $this->setDefaultOption('auth', [
-            $login, $password
-        ]);
+        $this->auth = [ $login, $password ];
     }
 
     /**
@@ -99,6 +104,12 @@ class Client extends GuzzleClient
                 }
                 break;
         }
+        
+        if ( !isset( $options['auth'] ) && !empty( $this->auth ) ) {
+            // pass auth to request
+            $options['auth'] = $this->auth;
+        }
+        
         try {
             $response = $this->send(
                 $this
