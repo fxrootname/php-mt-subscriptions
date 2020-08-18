@@ -20,8 +20,7 @@ use DigitalVirgo\MTSubscriptions\Service\Client\Exception\NotFoundException;
 use DigitalVirgo\MTSubscriptions\Service\Client\Exception\UnauthorizedException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Stream\Stream;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Client - Provice api methods
@@ -93,17 +92,17 @@ class Client extends GuzzleClient
             case 'POST':
             case 'PUT':
                 if ($payload instanceof ModelAbstractTraitInterface) {
-                    $options['body'] = Stream::factory($payload->toXml());
+                    $options['body'] = $payload->toXml();
                     $options['headers']['Content-type'] = 'application/xml';
                 } else {
-                    $options['body'] = Stream::factory($payload);
+                    $options['body'] = $payload;
                 }
                 break;
         }
         try {
             $response = $this->send(
                 $this
-                    ->createRequest($method, $url, $options)
+                    ->request($method, $url, $options)
             );
         } catch (ClientException $e) {
             switch ($e->getResponse()->getStatusCode()) {
