@@ -111,10 +111,7 @@ class Client extends GuzzleClient
         }
         
         try {
-            $response = $this->send(
-                $this
-                    ->request($method, $url, $options)
-            );
+            $response = $this->request($method, $url, $options);
         } catch (ClientException $e) {
             switch ($e->getResponse()->getStatusCode()) {
                 case 400:
